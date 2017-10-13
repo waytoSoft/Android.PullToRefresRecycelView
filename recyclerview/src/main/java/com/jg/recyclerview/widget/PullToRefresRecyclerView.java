@@ -30,6 +30,8 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
     private TextView mEmptyTextView;
 
     private LinearLayoutManager mLinearLayoutManager;
+    private GridLayoutManager mGridLayoutManager;
+
 
     private PullToRefreshRecyclerViewListener pullToRefreshRecyclerViewListener;
 
@@ -73,6 +75,9 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
 
         initRecyclerType(mType);
 
+        /*设置刷新模式*/
+        setMode(mMode);
+
         mRecyclerView.addOnScrollListener(new RecyclerViewOnScrollListener());
 
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -97,16 +102,20 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
      */
     private void initRecyclerType(Type type) {
         if (type == Type.List) {
+
             mLinearLayoutManager = new LinearLayoutManager(getContext(), OrientationHelper.VERTICAL, false);
             mRecyclerView.setLayoutManager(mLinearLayoutManager);
             mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
         } else if (type == Type.Grid) {
 
-            mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), mSpanNum));
+            mGridLayoutManager = new GridLayoutManager(getContext(), mSpanNum);
+            mRecyclerView.setLayoutManager(mGridLayoutManager);
 
         } else if (type == Type.Gallery) {
 
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), OrientationHelper.HORIZONTAL, false));
+            mLinearLayoutManager = new LinearLayoutManager(getContext(), OrientationHelper.HORIZONTAL, false);
+            mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         }
     }
@@ -120,7 +129,8 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
     public void analysisAttributeset(Context context, AttributeSet attrs, int defStyle) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PullToRefresRecyclerView, defStyle, 0);
 
-        int type = typedArray.getIndex(R.styleable.PullToRefresRecyclerView_recyclerView_Type);
+        /*解析类型*/
+        int type = typedArray.getInt(R.styleable.PullToRefresRecyclerView_recyclerView_Type, Type.List.getValue());
         if (type == Type.List.getValue()) {
             mType = Type.List;
         } else if (type == Type.Grid.getValue()) {
@@ -129,20 +139,19 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
             mType = Type.Gallery;
         }
 
-        int mode = typedArray.getIndex(R.styleable.PullToRefresRecyclerView_recyclerView_Mode);
+        /*解析刷新模式*/
+        int mode = typedArray.getInt(R.styleable.PullToRefresRecyclerView_recyclerView_Mode, Mode.PULL_FROM_START.getValue());
         if (mode == Mode.DISABLED.getValue()) {
             mMode = Mode.DISABLED;
-            mSwipeRefreshLayout.setEnabled(false);
         } else if (mode == Mode.PULL_FROM_START.getValue()) {
             mMode = Mode.PULL_FROM_START;
         } else if (mode == Mode.PULL_FROM_END.getValue()) {
             mMode = Mode.PULL_FROM_END;
-            mSwipeRefreshLayout.setEnabled(false);
         } else if (mode == Mode.BOTH.getValue()) {
             mMode = Mode.BOTH;
         }
 
-        mSpanNum = typedArray.getIndex(R.styleable.PullToRefresRecyclerView_span_Count);
+        mSpanNum = typedArray.getInt(R.styleable.PullToRefresRecyclerView_span_Count, 3);
     }
 
 
@@ -243,6 +252,27 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
         this.pullToRefreshRecyclerViewListener = listener;
     }
 
+    /**
+     * 设置点击事件监听器
+     * <p>
+     * author: hezhiWu
+     * created at 2017/10/13 10:40
+     */
+    public void setOnItemClickListener(RecyclerViewBaseAdapter.OnRecyclerViewItemClickListener listener) {
+        if (mAdapter != null)
+            mAdapter.setOnItemClickListener(listener);
+    }
+
+    /**
+     * 设置长按事件监听器
+     * <p>
+     * author: hezhiWu
+     * created at 2017/10/13 10:39
+     */
+    public void setOnItemLongClickListener(RecyclerViewBaseAdapter.OnRecyclerViewItemLongClickListener longListener) {
+        if (mAdapter != null)
+            mAdapter.setOnItemLongClickListener(longListener);
+    }
 
     /**
      * 设置刷新模式
@@ -365,10 +395,18 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
             if (mAdapter == null)
                 return;
 
-            int lastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
-            int totalItemCount = mLinearLayoutManager.getItemCount();
-            if (mMode == Mode.BOTH || mMode == Mode.PULL_FROM_END) {
+            int lastVisibleItem = 0;
+            int totalItemCount = 0;
 
+            if (mType == Type.List) {
+                lastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
+                totalItemCount = mLinearLayoutManager.getItemCount();
+            } else if (mType == Type.Grid) {
+                lastVisibleItem = mGridLayoutManager.findLastVisibleItemPosition();
+                totalItemCount = mGridLayoutManager.getItemCount();
+            }
+
+            if (mMode == Mode.BOTH || mMode == Mode.PULL_FROM_END) {
                 if (lastVisibleItem == totalItemCount - 2 && dy > 0) {
                     isLoading = true;
 
@@ -426,11 +464,11 @@ public class PullToRefresRecyclerView extends LinearLayout implements SwipeRefre
      */
     public enum Type {
 
-        List(0x10),
+        List(10),
 
-        Grid(0x20),
+        Grid(20),
 
-        Gallery(0x30);
+        Gallery(30);
 
         private int value;
 

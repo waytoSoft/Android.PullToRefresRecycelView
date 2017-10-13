@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.jg.recyclerview.widget.PullToRefresRecyclerView
+        android:id="@+id/recyclerView_Grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:recyclerView.Mode="PULL_FROM_START"
+        app:recyclerView.Type="Grid"
+        app:span.Count="3" />
+
+</LinearLayout>

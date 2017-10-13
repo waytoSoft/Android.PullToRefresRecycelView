@@ -11,14 +11,15 @@
         android:background="#FFF"
         android:gravity="center"
         android:padding="10dp"
-        android:visibility="gone"
-        android:text="Item_list" />
+        android:text="Item_list"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/Item_List_ImageView"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_margin="5dp"
         android:scaleType="fitXY"
-        android:src="@mipmap/default_img"/>
+        android:src="@mipmap/default_img" />
 
 </LinearLayout>

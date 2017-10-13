@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.jg.recyclerview.gallery.RecyclerViewGalleryActivity;
+import com.jg.recyclerview.grid.RecyclerViewGridActivity;
 import com.jg.recyclerview.list.RecyclerViewListActivity;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.List).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,RecyclerViewListActivity.class);
+                Intent intent = new Intent(MainActivity.this, RecyclerViewListActivity.class);
                 startActivity(intent);
             }
         });
@@ -25,14 +27,16 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.Grid).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, RecyclerViewGridActivity.class);
+                startActivity(intent);
             }
         });
 
         findViewById(R.id.Gallery).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, RecyclerViewGalleryActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -38,7 +38,7 @@ public abstract class RecyclerViewBaseAdapter<T> extends RecyclerView.Adapter {
     private int loadStatus;
 
     /*标记是否正在刷新*/
-    private boolean isLoading=false;
+    private boolean isLoading = false;
 
     /*标记是否加载更多，在加载完成后使用*/
     private boolean isLoadMore = true;
@@ -48,6 +48,12 @@ public abstract class RecyclerViewBaseAdapter<T> extends RecyclerView.Adapter {
 
     /*目标对象集合*/
     protected List<T> mList = new ArrayList<>();
+
+    /*item 点击事件*/
+    protected OnRecyclerViewItemClickListener listener;
+
+    /*item 长按事件*/
+    protected OnRecyclerViewItemLongClickListener longListener;
 
     private PullToRefresRecyclerView.Mode mMode;
 
@@ -67,11 +73,28 @@ public abstract class RecyclerViewBaseAdapter<T> extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         int type = getItemViewType(position);
         if (type == TYPE_ITEM) {
             onBaseBindViewHolder(holder, position);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(holder.itemView, mList.get(position), position);
+                }
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (longListener != null) {
+                    longListener.onLongItemClick(holder.itemView, mList.get(position), position);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -223,6 +246,26 @@ public abstract class RecyclerViewBaseAdapter<T> extends RecyclerView.Adapter {
     }
 
     /**
+     * 设置点击事件监听器
+     * <p>
+     * author: hezhiWu
+     * created at 2017/10/13 10:40
+     */
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    /**
+     * 设置长按事件监听器
+     * <p>
+     * author: hezhiWu
+     * created at 2017/10/13 10:39
+     */
+    public void setOnItemLongClickListener(OnRecyclerViewItemLongClickListener longListener) {
+        this.longListener = longListener;
+    }
+
+    /**
      * 设置是否加载更多
      * <p>
      * author: hezhiWu
@@ -241,5 +284,28 @@ public abstract class RecyclerViewBaseAdapter<T> extends RecyclerView.Adapter {
         public FooterViewHolder(View view) {
             super(view);
         }
+    }
+
+
+    /**
+     * @author hezhiWu
+     * @version V1.0
+     * @Package com.yunwei.water.ui.biz.interfac
+     * @Description:RecyclerView 点击事件
+     * @date 2016/9/12 16:43
+     */
+    public interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view, Object data, int position);
+    }
+
+    /**
+     * @author hezhiWu
+     * @version V1.0
+     * @Package com.yunwei.water.ui.biz.interfac
+     * @Description:RecyclerView 长按事件
+     * @date 2016/9/12 16:43
+     */
+    public interface OnRecyclerViewItemLongClickListener {
+        void onLongItemClick(View view, Object data, int position);
     }
 }
