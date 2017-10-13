@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">recyclerView</string>
+
+    <string name="empty_data">暂无数据</string>
+
+    <string name="loading_more">加载更多</string>
+
+    <array name="imags_array">
+        <item>http://imgsrc.baidu.com/imgad/pic/item/f7246b600c338744b669f95e5b0fd9f9d72aa060.jpg
+        </item>
+        <item>http://pic.58pic.com/58pic/13/18/02/93f58PICvqT_1024.jpg</item>
+        <item>http://pic33.nipic.com/20130929/7487939_105541436185_2.jpg</item>
+        <item>
+            http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=38996aa7c3177f3e0439f44e18a651b2/6609c93d70cf3bc7766c35fddb00baa1cd112ab7.jpg
+        </item>
+        <item>
+            http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=24b605029d2bd40756cadbbe13e0f424/34fae6cd7b899e512221a13e48a7d933c8950d68.jpg
+        </item>
+        <item>
+            http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=ba6b55c187b1cb132a643450b53d3c3b/48540923dd54564e1c9bda17b9de9c82d1584f25.jpg
+        </item>
+        <item>
+            http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=85a76c78fc246b606f03ba3783917039/0d338744ebf81a4c6aa1dee2dd2a6059252da60d.jpg
+        </item>
+        <item>http://imgsrc.baidu.com/imgad/pic/item/63d9f2d3572c11dfa5609807692762d0f703c264.jpg
+        </item>
+        <item>http://img.hb.aicdn.com/2a37477d5cdc174bb7368d9c15e723686cb6c6c1220b6-67SAzQ_fw580
+        </item>
+        <item>http://img.sj33.cn/uploads/allimg/201407/1516034416-16.jpg</item>
+        <item>
+            http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=4d56f4c81fce36d3b6098b73529a50f2/d439b6003af33a87ffb30808cc5c10385243b5c1.jpg
+        </item>
+        <item>http://pic30.nipic.com/20130616/7487939_165717236142_2.jpg</item>
+        <item>http://img.sj33.cn/uploads/allimg/201407/151603E18-5.jpg</item>
+        <item>http://pic122.nipic.com/file/20170218/12006035_154440399000_2.jpg</item>
+        <item>http://images.quanjing.com/top006/high/top-313545.jpg</item>
+        <item>http://pic23.nipic.com/20120908/10875648_113458406141_2.jpg</item>
+        <item>
+            http://www.gywb.com.cn/shenghuo/attachement/jpg/site2/20150518/4587867698239680769.jpg
+        </item>
+        <item>http://img.wzrb.com.cn/articlefile/20160428/20160428344273.jpg</item>
+        <item>http://img.ivsky.com/img/tupian/pre/201504/24/weilai_kehuan_chengshi-008.jpg</item>
+        <item>
+            http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=29b1a7236d09c93d13ff06b4f75492a9/71cf3bc79f3df8dc31a662bcc711728b47102800.jpg
+        </item>
+
+    </array>
+
+    <array name="imageV2_array">
+        <item>http://gb.cri.cn/mmsource/images/2015/03/31/62/13980986432435245486.jpg</item>
+        <item>http://img.club.pchome.net/kdsarticle/2014/06small/16/2de64690a66f3759ee2b71032882fdd1_1000x750.jpg</item>
+        <item>http://img.game333.net/picfile/pic/2015/05/20/2015052044439795.jpg</item>
+        <item>http://images.china.cn/news/attachement/jpg/site3/20150326/3037330083716117154.jpg</item>
+        <item>http://gb.cri.cn/mmsource/images/2015/03/31/77/4324751951736318157.jpg</item>
+        <item>http://img1.cache.netease.com/catchpic/0/0C/0CBFBE628FA24746AE0E7F053FA790A1.jpg</item>
+        <item>http://img01.taopic.com/141012/235110-1410120HZ5100.jpg</item>
+        <item>http://dynamic-image.yesky.com/740x-/uploadImages/2015/268/13/1WSOW5P57HK3.jpg</item>
+        <item>http://gb.cri.cn/mmsource/images/2015/03/31/8/6399471712392162340.jpg</item>
+        <item>http://img01.taopic.com/170905/318761-1FZ50I01546.jpg</item>
+        <item>http://img8.ph.126.net/pA_hUL_VB8ma1xD99g9nvA==/6598246244098211508.jpg</item>
+        <item>http://www.mangowed.com/uploads/allimg/130613/572-1306131S05U38.jpg</item>
+        <item>http://www.nbazww.com/uploadfile/2015/0330/20150330034743461.jpg</item>
+        <item>http://www.people.com.cn/mediafile/pic/20131122/56/3320029630781826116.jpg</item>
+        <item>http://img01.taopic.com/170905/318761-1FZ50H95354.jpg</item>
+        <item>http://www.mangowed.com/uploads/allimg/130613/572-1306131S135208.jpg</item>
+        <item>http://tuht.zhibo8.cc/uploads/2016/04/19/8b4c5391f622023d71a2243f9a3fd507.jpg</item>
+        <item>http://www.sinaimg.cn/dy/slidenews/21_img/2015_49/41065_4678611_330012.jpg</item>
+        <item>http://himg2.huanqiu.com/attachment2010/2015/0210/20150210111805815.jpg</item>
+        <item>http://www.hinews.cn/pic/0/16/39/81/16398167_512802.jpg</item>
+    </array>
+</resources>
